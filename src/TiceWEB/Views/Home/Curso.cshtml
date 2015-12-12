@@ -1,0 +1,282 @@
+﻿
+<div class="site-content">
+    <div class="container-fluid">
+        <ul class="nav nav-tabs">
+            <li class="active"><a asp-controller="Home" asp-action="Curso">Cursos</a></li>
+            <li class="disabled"><a asp-controller="Home" asp-action="Actividad">Actividades</a></li>
+            <li class="disabled"><a asp-controller="Home" asp-action="Tarea">Tareas</a></li>
+            <li class="disabled"><a asp-controller="Home" asp-action="Documento">Documentos</a></li>
+        </ul>
+        <h2>Listado de cursos</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-1 form-group">
+                        <label>Periodo</label>
+                    </div>
+                    <div class="col-xs-3 form-group">
+                        <select class="form-control" id="periodo">
+                            <option>Seleccione</option>
+                            <option>2015-2</option>
+                            <option>2015-3</option>
+                            <option>2015-4</option>
+                            <option>2015-5</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-1 form-group">
+                        <label>Estado</label>
+                    </div>
+                    <div class="col-xs-3 form-group">
+                        <select class="form-control" id="estado">
+                            <option>Seleccione</option>
+                            <option>Activo</option>
+                            <option>Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-4 form-group">
+                        <button type="button" class="btn btn-default" onclick="CursosxActividad(); return false;">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-default btn-actividad disabled" data-toggle="modal" data-target="#myModal">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nueva Actividad
+        </button>
+
+        <div id="divResult"></div>
+
+        <div class="table-responsive">
+            <table id="tblCursos" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th>Periodo</th>
+                        <th>Modalidad</th>
+                        <th>Docente Asignado</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Giacomo</td>
+                        <td>Guilizzoni</td>
+                        <td>33</td>
+                        <td>Peldi</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalCurso" data-rel="Guilizzoni">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Guido Jack</td>
+                        <td>Guilizzoni</td>
+                        <td>3</td>
+                        <td>The Guids</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalCurso" data-rel="Guilizzoni">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mariah</td>
+                        <td>Maclachlan</td>
+                        <td>34</td>
+                        <td>Patata</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalCurso" data-rel="Maclachlan">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mariah</td>
+                        <td>Maclachlan2</td>
+                        <td>34</td>
+                        <td>Patata</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalCurso" data-rel="Maclachlan2">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mariah</td>
+                        <td>Maclachlan3</td>
+                        <td>34</td>
+                        <td>Patata</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalCurso" data-rel="Maclachlan3">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="button" class="btn btn-default btn-actividad disabled" data-toggle="modal" data-target="#myModal">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nueva Actividad
+        </button>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Registrar Actividad
+                    <img src="~/images/Bb_learn_small.png" style="width:100px;float:right" />
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form id="guardarActividad">
+                    <div class="row">
+                        <div class="col-xs-4 form-group">
+                            <label>Curso :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <select class="form-control" id="selectCurso">
+                                <option>Seleccione</option>
+                                <option value="1">Lógica</option>
+                                <option value="2">Aritmética</option>
+                                <option value="3">Algebra</option>
+                                <option value="4">Lenguaje</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <label>Tipo :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <select class="form-control" id="selectTipo">
+                                <option>Seleccione</option>
+                                <option value="1">Presencial</option>
+                                <option value="2">Virtual</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <label>Titulo :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <input class="form-control" type="text" id="inputTitulo" />
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <label>Fecha Inicio :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <input class="form-control" type="text" id="datepicker1">
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <label>Fecha Fin :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <input class="form-control" type="text" id="datepicker2">
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <label>Sesión :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <select class="form-control" id="selectSesion">
+                                <option>Seleccione</option>
+                                <option value="1">Presencial</option>
+                                <option value="2">Virtual</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <label>Estado :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <select class="form-control" id="selectEstado">
+                                <option>Seleccione</option>
+                                <option value="1">Presencial</option>
+                                <option value="2">Virtual</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <label>Descripción :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <textarea class="form-control" rows="3" id="textareaDesc"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnGuardarActividad">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalCurso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Editar Curso
+                    <img src="~/images/Bb_learn_small.png" style="width:100px;float:right" />
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form id="guardarCurso">
+                    <div class="row">
+                        <div class="col-xs-4 form-group">
+                            <label>Curso :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <input class="form-control" type="text" id="inputCursoNombre" />
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <label>Estado :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <select class="form-control" id="selectCursoEstado">
+                                <option>Seleccione</option>
+                                <option value="1">Iniciado</option>
+                                <option value="2">En proceso</option>
+                                <option value="3">Terminado</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <label>Observación :</label>
+                        </div>
+                        <div class="col-xs-8 form-group">
+                            <textarea class="form-control" rows="3" id="textareaObs"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnGuardarCurso">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/curso.js"></script>
+}

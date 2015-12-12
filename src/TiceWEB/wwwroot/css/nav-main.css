@@ -1,0 +1,173 @@
+.nav-main > li.active-menu.mis-estudios a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_estudios_red.png); 
+  }
+.nav-main > li.current-menu.mis-estudios a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_estudios_red.png); 
+  }
+.nav-main > li.mis-estudios a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_estudios_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-tramites a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_tramites_red.png); 
+  }
+.nav-main > li.current-menu.mis-tramites a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_tramites_red.png); 
+  }
+.nav-main > li.mis-tramites a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_tramites_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-finanzas a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_finanzas_red.png); 
+  }
+.nav-main > li.current-menu.mis-finanzas a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_finanzas_red.png); 
+  }
+.nav-main > li.mis-finanzas a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_finanzas_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-reservas a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_reservas_red.png); 
+  }
+.nav-main > li.current-menu.mis-reservas a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_reservas_red.png); 
+  }
+.nav-main > li.mis-reservas a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_reservas_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-servicios a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_servicios_red.png); 
+  }
+.nav-main > li.current-menu.mis-servicios a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_servicios_red.png); 
+  }
+.nav-main > li.mis-servicios a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_servicios_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-noticias a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/noticias-red.png); 
+  }
+.nav-main > li.current-menu.mis-noticias a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/noticias-red.png); 
+  }
+.nav-main > li.mis-noticias a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/noticias-grey.png); 
+  }
+
+
+
+.nav-main > li.active-menu.mi-docencia a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mi_docencia_red.png); 
+  }
+.nav-main > li.current-menu.mi-docencia a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mi_docencia_red.png); 
+  }
+.nav-main > li.mi-docencia a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mi_docencia_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-tramites-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_tramites_red.png); 
+  }
+.nav-main > li.current-menu.mis-tramites-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_tramites_red.png); 
+  }
+.nav-main > li.mis-tramites-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_tramites_grey.png); 
+  }
+
+.nav-main > li.active-menu.alumnos a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_alumnos_red.png); 
+  }
+.nav-main > li.current-menu.alumnos a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_alumnos_red.png); 
+  }
+.nav-main > li.alumnos a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_alumnos_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-reservas-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_reservas_red.png); 
+  }
+.nav-main > li.current-menu.mis-reservas-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_reservas_red.png); 
+  }
+.nav-main > li.mis-reservas-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_reservas_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-servicios-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_servicios_red.png); 
+  }
+.nav-main > li.current-menu.mis-servicios-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_servicios_red.png); 
+  }
+.nav-main > li.mis-servicios-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_servicios_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-noticias-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/noticias-red.png); 
+  }
+.nav-main > li.current-menu.mis-noticias-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/noticias-red.png); 
+  }
+.nav-main > li.mis-noticias-docentes a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/noticias-grey.png); 
+  }
+
+
+
+.nav-main > li.active-menu.sus-estudios a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_estudios_red.png); 
+  }
+.nav-main > li.current-menu.sus-estudios a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_estudios_red.png); 
+  }
+.nav-main > li.sus-estudios a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_estudios_grey.png); 
+  }
+
+.nav-main > li.active-menu.sus-tramites a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_tramites_red.png); 
+  }
+.nav-main > li.current-menu.sus-tramites a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_tramites_red.png); 
+  }
+.nav-main > li.sus-tramites a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_tramites_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-finanzas-padres a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_finanzas_red.png); 
+  }
+.nav-main > li.current-menu.mis-finanzas-padres a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_finanzas_red.png); 
+  }
+.nav-main > li.mis-finanzas-padres a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/mis_finanzas_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-servicios-padres a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/info_red.png); 
+  }
+.nav-main > li.current-menu.mis-servicios-padres a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/info_red.png); 
+  }
+.nav-main > li.mis-servicios-padres a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/info_grey.png); 
+  }
+
+.nav-main > li.active-menu.mis-noticias a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/noticias-red.png); 
+  }
+.nav-main > li.current-menu.mis-noticias a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/noticias-red.png); 
+  }
+.nav-main > li.mis-noticias a div {
+  background-image: url(http://mi.upc.edu.pe/assets/img/noticias-grey.png); 
+  } 

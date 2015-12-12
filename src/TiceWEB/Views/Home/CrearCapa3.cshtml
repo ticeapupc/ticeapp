@@ -1,0 +1,131 @@
+﻿
+<div class="site-content">
+    <div class="container-fluid">
+
+        <!-- Inicio cuerpo -->
+        <button type="button" class="btn btn-default">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+        <br /><br />
+        <ul class="nav nav-tabs">
+            <li><a asp-controller="Home" asp-action="CrearCapa">Ajustes Generales</a></li>
+            <li><a asp-controller="Home" asp-action="CrearCapa2">Taller & Materiales</a></li>
+            <li class="active"><a asp-controller="Home" asp-action="CrearCapa3">Participantes</a></li>
+        </ul>
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Lista Participantes</div>
+            <div class="panel-body">
+
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir Taller
+                </button>
+                <br><br>
+                <div class="row">
+                    <div class="col-xs-12 col-md-8 form-inline">
+                        <label>Nombre Docente: </label>
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-8">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th><div class="checkbox"><label><input type="checkbox"></label></div></th>
+                                        <th>Código Docente</th>
+                                        <th>Nombre del Docente</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
+                                        <td>Giacomo</td>
+                                        <td>Guilizzoni</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
+                                        <td>Guido Jack</td>
+                                        <td>Guilizzoni</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
+                                        <td>Mariah</td>
+                                        <td>Maclachlan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
+                                        <td>Giacomo</td>
+                                        <td>Guilizzoni</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
+                                        <td>Guido Jack</td>
+                                        <td>Guilizzoni</td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
+                                        <td>Mariah</td>
+                                        <td>Maclachlan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fin cuerpo -->
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Listado de talleres
+                    <img src="Bb_learn_small.png" style="width:100px;float:right" />
+                </h4>
+            </div>
+            <div class="modal-body">
+
+                <span>* Seleccione una fila para cargar los materiales del taller</span>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-8">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nombre Taller</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>T001</td>
+                                        <td>Guilizzoni</td>
+                                    </tr>
+                                    <tr>
+                                        <td>T002</td>
+                                        <td>Guilizzoni</td>
+                                    </tr>
+                                    <tr>
+                                        <td>T003</td>
+                                        <td>Maclachlan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal -->

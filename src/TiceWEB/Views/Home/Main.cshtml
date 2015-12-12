@@ -1,0 +1,155 @@
+﻿
+<div class="site-content">
+    <div class="container-fluid">
+
+        <h2><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Capacitaciones</h2>
+
+        <button type="button" class="btn btn-default" onclick="javascript:irCrearCapa()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Capacitación
+        </button>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-10 form-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Datos Generales</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3 form-group">
+                                <label>Taller</label>
+                                <select class="form-control" id="sel1">
+                                    <option selected> Seleccione </option>
+                                    <option>Short Option</option>
+                                    <option>This Is A Longer Option</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-3 form-group">
+                                <label>Periodo</label>
+                                <select class="form-control" id="sel1">
+                                    <option selected> Seleccione </option>
+                                    <option>Short Option</option>
+                                    <option>This Is A Longer Option</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-12 col-md-3 form-group">
+                                <label>Nombre Capacitación</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                            <div class="col-xs-12 col-md-2 form-group">
+                                <button type="button" class="btn btn-default btn-form-line">Buscar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Taller</th>
+                        <th># Usuarios Inscritos</th>
+                        <th>Periodo</th>
+                        <th>Fecha Fin</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Giacomo</td>
+                        <td>xx1</td>
+                        <td>33</td>
+                        <td></td>
+                        <td>01/11/2005</td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Guido Jack</td>
+                        <td>xx2</td>
+                        <td>3</td>
+                        <td></td>
+                        <td>06/11/2015</td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mariah</td>
+                        <td>xx3</td>
+                        <td>34</td>
+                        <td></td>
+                        <td>15/11/2015</td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                </h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label>Está seguro de eliminar esta Capacitación</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModal2">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label>La capacitación xxxx se encuentra activa, no puede eliminarla</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

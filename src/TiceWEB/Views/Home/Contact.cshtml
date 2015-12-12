@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Curso x Actividad</title>
+</head>
+<body>
+
+    <div>
+        <h2>All Products</h2>
+        <ul id="products" />
+    </div>
+    <div>
+        <h2>Busqueda</h2>
+        <input type="text" id="periodo" size="20" />
+        <input type="text" id="estado" size="20" />
+        <input type="button" value="Search" onclick="CursosxActividad(); return false;" />
+        <p id="product" />
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        var uri = 'http://localhost:49492/api/Actividad?periodo=2015-03&estado=A';
+  
+        function CursosxActividad() {
+            jQuery.support.cors = true;
+            $.ajax({
+                url: 'http://localhost:49492/api/Actividad?periodo=2015-03&estado=A',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    WriteResponse(data);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+
+
+      function WriteResponse(cursos) {
+          var strResult = "<table><th>Codigo</th><th>Curso</th><th>Fecha</th><th>Periodo</th><th>Modalidad</th><th>Docente</th><th>Estado</th>";
+            $.each(cursos, function (index, cursos) {
+                strResult += "<tr><td>" + cursos.Codigo + "</td><td> " + cursos.Curso + "</td><td>" + cursos.Fecha + "</td><td>" + cursos.Periodo + "</td><td>" + cursos.Modalidad + "</td><td>" + cursos.Docente +"</td><td>" + cursos.Estado+ "</td></tr>";
+            });
+            strResult += "</table>";
+            $("#divResult").html(strResult);
+        }
+
+    function find() {
+        var periodo = $('#periodo').val();
+        var estado = $('#estado').val();
+
+
+        $.getJSON(uri + 'periodo=' + periodo + '&estado=' + estado)
+          .done(function (data) {
+              $.each(data, function (key, item) {
+                  // Add a list item for the product.
+                  $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+              });
+          });
+    }
+
+    </script>
+
+
+    <div id="divResult"></div>
+
+</body>
+</html>
+
+
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nueva Actividad
+</button>
+

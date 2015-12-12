@@ -1,0 +1,172 @@
+.spinner {
+  width: 100px;
+}
+.spinner input {
+  text-align: right;
+}
+.input-group-btn-vertical {
+  position: relative;
+  white-space: nowrap;
+  width: 1%;
+  vertical-align: middle;
+  display: table-cell;
+}
+.input-group-btn-vertical > .btn {
+  display: block;
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  padding: 7px;
+  margin-left: -1px;
+  position: relative;
+  border-radius: 0;
+  margin-top: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.input-group-btn-vertical > .btn:first-child {
+  border-top-right-radius: 4px;
+}
+.input-group-btn-vertical > .btn:last-child {
+  margin-top: -2px;
+  border-bottom-right-radius: 4px;
+}
+.input-group-btn-vertical i{
+  position: absolute;
+  top: 0;
+  left: 4px;
+}
+
+.panel {
+  margin: 5px;
+}
+
+/*
+select {
+    width: 100%;
+    height: 32px;
+    padding:3px;
+    padding-right: 25px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+
+label.combobox {
+    position:relative;
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 0px 0px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555;
+    background-color: #FFF;
+    background-image: none;
+}
+label.combobox:after {
+    content:'<>';
+    font:11px "Consolas", monospace;
+    color:#aaa;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:8px; top:7px;
+    padding:0 0 2px;
+    border-bottom:1px solid #ddd;
+    position:absolute;
+    pointer-events:none;
+}
+label.combobox:before {
+    content:'';
+    right:6px; top:0px;
+    width:20px; height:20px;
+    background:#f8f8f8;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+}
+*/
+
+h2{
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+li.active{
+  background: #efefef;
+  color: #000;
+}
+
+#cssmenu > ul > li.active > a {
+    color: #333;
+}
+
+#cssmenu > ul > li > a {
+    padding: 10px;
+}
+
+.form-control {
+    border-radius: 0px;
+    height: 30px;
+}
+
+.modal-content{
+    border-radius: 0px;
+}
+.row .form-group {
+    margin-bottom: 10px;
+}
+.panel-body .form-group {
+    margin-bottom: 0px;
+}
+
+.row{
+    margin-bottom: 5px;
+}
+
+.btn{
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.checkbox, .radio{
+    margin: 0px;
+}
+
+input[type="checkbox"].form-control {
+    webkit-box-shadow: none;
+    box-shadow:none;
+    width: 30%;
+}
+
+.table-striped tbody tr.highlight td {
+    background-color: #d9d9d9;
+}
+
+.site-content {
+    padding-top: 150px;
+}
+.nav-tabs{
+    margin-bottom: 10px;
+}
+
+.table>tbody>tr>td{
+    padding-bottom:4px;
+    padding-top:4px;
+}

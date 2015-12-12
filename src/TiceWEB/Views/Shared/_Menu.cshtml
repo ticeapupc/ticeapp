@@ -1,0 +1,174 @@
+﻿@{
+    var classPlanificacion = "";
+    var classDiseno = "";
+}
+
+@if (ViewData["menu"] == "main")
+{
+    classPlanificacion = "active";
+}
+else
+{
+    classDiseno = "active";
+}
+
+<div class="site-header hidden-sm hidden-xs">
+    <div class="container-fluid">
+        <div class="header-global clearfix">
+            <div class="pull-left crisol">
+                <img class="img-center pt-7" src="~/images/isotipo_upc.png" alt="">
+            </div>
+            <div class="pull-left mt-7">
+                <span class="solano-bold-20 black-text">Mi UPC</span>
+            </div>
+            <div class="pull-right pr-14 pt-7">
+                <ul class="list-unstyled">
+                    <li class="pull-left mr-14"><span class="solano-bold-16 black-text"><a id="lnk_ext_Portal" class="black-link" href="http://www.upc.edu.pe/" target="_blank">Portal</a></span></li>
+                    <li class="pull-left mr-14"><span class="solano-bold-16 black-text"><a id="lnk_ext_Servicios" class="black-link" href="http://www.upc.edu.pe/acerca-de-upc/servicios" target="_blank">Servicios</a></span></li>
+                    <li class="pull-left mr-14"><span class="solano-bold-16 black-text"><a id="lnk_ext_Blogs" class="black-link" href="http://blogs.upc.edu.pe/" target="_blank">Blogs</a></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-no-global header-estudiante" style="background-image:url(&#39;http://mi.upc.edu.pe/assets/img/header_no_global_estudiante.png&#39;)">
+            <div class="inicio">
+                <a id="lnk_int_Inicio" href="http://mi.upc.edu.pe/dashboard/estudiante">
+                    <div class="inicio-icon"></div>
+                    <span>Inicio</span>
+                </a>
+            </div>
+            
+            <div id='cssmenu'>
+                <ul>                    
+                    <li class="@classPlanificacion">
+                        <a>Planificación</a>
+                        <ul>
+                            <li>
+                                <!--<a onclick="javascript:irActTalleres()">Actualizar Capacitación</a>-->
+                                <a asp-controller="Home" asp-action="Main">Actualizar Capacitación</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="@classDiseno">
+                        <a>Virtualización</a>
+                        <ul>
+                            <li>
+                                <!--<a onclick="javascript:irGenerarDisenio()">Generar Diseño Enseñanza</a>-->
+                                <a asp-controller="Home" asp-action="Curso">Generar Diseño Enseñanza</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a>Monitoreo y Administración</a></li>
+                    <li><a>Reportes</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mobile-nav" class="hidden-md hidden-lg container-fluid p-0">
+    <div class="white-header col-xs-12">
+        <img src="~/images/isotipo_upc.png" class="pt-7 pull-left">
+        <span class="solano-bold-28 pull-left pt-7 pl-7 uppercase">Mi UPC</span>
+    </div>
+    <div class="col-xs-12">
+        <div class="col-sm-0-5 col-xs-0-5"></div>
+        <div class="col-sm-11 col-xs-12 blue-menu p-0 pl-35">
+            <div class="blue-menu-option pull-left col-sm-7 col-xs-7 p-7">
+                <div class="button" type="button" data-toggle="collapse" data-target="#collapseMobileOpcion"
+                     aria-expanded="false" aria-controls="collapseMobileOpcion">
+                    <img class="inline-block" src="~/images/bars.png" alt="">
+                    <span class="pl-7">Capacitaciones</span>
+                </div>
+            </div>
+            <div class="blue-menu-option pull-right col-sm-2 col-sm-offset-3 col-xs-4 col-xs-offset-1 border-white-right p-7 blue-menu-option">
+                <div class="button text-center" type="button" data-toggle="collapse" data-target="#collapseMobile" aria-expanded="false" aria-controls="collapseMobile">
+                    <img class="inline-block" src="~/images/bars.png" alt="">
+                    <span class="pl-7">MENU</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="collapse hidden-md hidden-lg" id="collapseMobile">
+    <ul class="list-unstyled mobile-menu">
+        <li class="parent"><a id="lnk_int_Inicio" href="http://mi.upc.edu.pe/dashboard/estudiante">Inicio</a></li>
+        <li class="parent"><span>Mis Estudios</span></li>
+        <li class="parent"><span>Capacitaciones</span></li>
+        <li class="parent"><span>Cursos</span></li>
+        <li class="parent"><span>Mis Trámites</span></li>
+        <li class="parent"><span>Mis Finanzas</span></li>
+        <li class="parent"><span>Mis Reservas</span></li>
+        <li class="parent"><span>Mis Servicios</span></li>
+        <li class="parent"><span>Mis Noticias</span></a></li>
+        <li class="parent">
+            <span>Mi Perfil</span>
+            <ul class="list-unstyled child" style="display: none;">
+                <li><a id="lnk_int_MisDatosMovil" href="">Mis Datos</a></li>
+                <li><a data-toggle="modal" data-target="#myModal" id="">Ver tutorial</a></li>
+            </ul>
+        </li>
+        <li class="parent"><a id="lnk_int_AyudaMovil" href="">Ayuda</a></li>
+        <li class="parent"><a id="lnk_int_BuscarMovil" href="">Buscar</a></li>
+        <li><a id="lnk_intCerrarSesionMovil" href="">Cerrar Sesión</a></li>
+    </ul>
+</div>
+
+<div id="collapseMobileOpcion" class="collapse hidden-md hidden-lg">
+    <ul class="list-unstyled mobile-menu">
+        <li class='parent @classPlanificacion'>
+            <a>Planificación</a>
+            <ul class="list-unstyled child">
+                <li><a asp-controller="Home" asp-action="Main">Actualizar Capacitación</a></li>
+            </ul>
+        </li>
+        <li class='parent @classDiseno'>
+            <a>Virtualización</a>
+            <ul class="list-unstyled child">
+                <li><a asp-controller="Home" asp-action="Curso">Generar Diseño Enseñanza</a></li>
+            </ul>
+        </li>
+        <li class='parent'><a>Monitoreo y Administración</a></li>
+        <li class='parent'><a>Reportes</a></li>
+    </ul>
+</div>
+
+<div class="site-menu hidden-sm hidden-xs">
+    <ul class="list-unstyled nav-main">
+        <li class="mis-estudios menu sidebar-item">
+            <a id="lnk_int_MisEstudios" href="">
+                <div></div>
+                <span>Mis Estudios</span>
+            </a>
+        </li>
+        <li class="mis-tramites menu current-menu sidebar-item">
+            <a id="lnk_int_MisTrámites" asp-controller="Home" asp-action="Main">
+                <div></div>
+                <span>Capacitaciones</span>
+            </a>
+        </li>
+        <li class="mis-tramites menu sidebar-item">
+            <a id="lnk_int_MisTrámites" href="http://mi.upc.edu.pe/mis-tramites/estado-actual#">
+                <div></div>
+                <span>Mis Trámites</span>
+            </a>
+        </li>
+        <li class="mis-finanzas menu sidebar-item">
+            <a id="lnk_int_MisFinanzas" href="http://mi.upc.edu.pe/mis-tramites/estado-actual#">
+                <div></div>
+                <span>Mis Finanzas</span>
+            </a>
+        </li>
+        <li class="mis-reservas menu sidebar-item">
+            <a id="lnk_int_MisReservas" href="http://mi.upc.edu.pe/mis-tramites/estado-actual#">
+                <div></div>
+                <span>Mis Reservas</span>
+            </a>
+        </li>
+        <li class="mis-servicios menu sidebar-item">
+            <a id="lnk_int_MisServicios" href="http://mi.upc.edu.pe/mis-servicios/otros-servicios">
+                <div></div>
+                <span>Mis Servicios</span>
+            </a>
+        </li>
+    </ul>
+</div>

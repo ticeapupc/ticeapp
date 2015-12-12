@@ -1,0 +1,143 @@
+﻿
+<div class="site-content">
+    <div class="container-fluid">
+
+        <!-- Inicio cuerpo -->
+        <button type="button" class="btn btn-default">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnGuardarCapacitacion">Guardar</button>
+        <br /><br />
+        <ul class="nav nav-tabs">
+            <li class="active"><a asp-controller="Home" asp-action="CrearCapa">Ajustes Generales</a></li>
+            <li><a asp-controller="Home" asp-action="CrearCapa2">Taller & Materiales</a></li>
+            <li><a asp-controller="Home" asp-action="CrearCapa3">Participantes</a></li>
+        </ul>
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Detalles</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Nombre Capacitación</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6 form-group">
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Certificado Capacitación</label>
+                    </div>
+                    <div class="col-xs-12 col-md-1 form-group">
+                        <input class="form-control" type="checkbox" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Periodo</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6 form-group">
+                        <select class="form-control" id="sel1">
+                            <option selected> Seleccione </option>
+                            <option>Short Option</option>
+                            <option>This Is A Longer Option</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Descripción</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6 form-group">
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Capacitación Activo</label>
+                    </div>
+                    <div class="col-xs-12 col-md-1 form-group">
+                        <input class="form-control" type="checkbox" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Lugar</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6 form-group">
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Fecha</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6 form-group">
+                        <input class="form-control" type="text" id="datepicker1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Hora</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6 form-group">
+                        <input class="form-control" type="text" placeholder="00:00:00" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Comunicación</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Correo electrónico de contacto de la capacitación</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6 form-group">
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Enviar notificaciónes a participantes</label>
+                    </div>
+                    <div class="col-xs-12 col-md-1 form-group">
+                        <input class="form-control" type="checkbox" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Periodicidad de envío</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6 form-inline">
+                        <div class="input-group spinner">
+                            <input type="text" class="form-control" value="42">
+                            <div class="input-group-btn-vertical">
+                                <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+                                <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+                            </div>
+                        </div>
+                        <span>días</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 form-group">
+                        <label>Fecha de Inicio envío</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6 form-group">
+                        <input class="form-control" type="text" id="datepicker2">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin cuerpo -->
+    </div>
+</div>
+
+<!-- Modal -->
+<!-- Fin Modal -->
+
+@section scripts{
+    <script src="~/js/notie.js"></script>
+    <script src="~/js/crearcapa.js"></script>
+}
