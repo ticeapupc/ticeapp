@@ -3,35 +3,53 @@
     <div class="container-fluid">
         <ul class="nav nav-tabs">
             <li><a asp-controller="Home" asp-action="Curso">Cursos</a></li>
-            <li class="active"><a asp-controller="Home" asp-action="Actividad">Actividades</a></li>
-            <li><a asp-controller="Home" asp-action="Tarea">Tareas</a></li>
-            <li><a asp-controller="Home" asp-action="Documento">Documentos</a></li>
+            <li class="active"><a>Actividades</a></li>
+            <li><a onclick="javascript:detTareas()">Tareas</a></li>
+            <li class="disabled"><a asp-controller="Home" asp-action="Documento">Documentos</a></li>
         </ul>
         <!-- inicio cuerpo-->
 
         <h2>Listado de Actividades</h2>
+        <br />
+        <div class="row">
+            <div class="col-xs-4 col-md-1 form-group">
+                <label>Curso :</label>
+            </div>
+            <div class="col-xs-8 col-md-2 form-group">
+                <span id="spanCurso"></span>
+            </div>
+            <div class="col-xs-4 col-md-1 form-group">
+                <label>Modalidad :</label>
+            </div>
+            <div class="col-xs-8 col-md-2 form-group">
+                <span id="spanModalidad"></span>
+            </div>
+        </div>
+        <input type="hidden" id="codigoCurso" value="4"/>
 
         <button type="button" class="btn btn-default btn-tarea disabled" data-toggle="modal" data-target="#myModal">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Asignar Tarea
         </button>
 
+        <input type="hidden" value="" name="actividadSelected" id="actividadSelected" />
+        <input type="hidden" value="@ViewData["codigoCurso"]" name="codigoCurso" id="codigoCurso" />
+
         <div class="table-responsive">
-            <table id="tblActividades" class="table table-striped">
+            <table id="tblActividades" class="table table-striped table-condensed">
                 <thead>
                     <tr>
                         <th>Código</th>
                         <th>Nombre</th>
-                        <th>Fecha</th>
                         <th>Tipo</th>
-                        <th>Responsable</th>
                         <th>Inicio</th>
-                        <th>Fecha Limite</th>
+                        <th>Fecha Fin</th>
                         <th>Avance</th>
                         <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbodyResult">
+                    <!--
                     <tr>
                         <td>Giacomo</td>
                         <td>Guilizzoni</td>
@@ -40,8 +58,6 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
                         <td>
                             <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalEditActividad" data-rel="Guilizzoni">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -51,82 +67,7 @@
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Guido Jack</td>
-                        <td>Guilizzoni</td>
-                        <td>3</td>
-                        <td>The Guids</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalEditActividad" data-rel="Guilizzoni">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalDelActividad" data-rel="Guilizzoni">
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mariah</td>
-                        <td>Maclachlan</td>
-                        <td>34</td>
-                        <td>Patata</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalEditActividad" data-rel="Maclachlan">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalDelActividad" data-rel="Maclachlan">
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Guido Jack</td>
-                        <td>Guilizzoni</td>
-                        <td>3</td>
-                        <td>The Guids</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalEditActividad" data-rel="Guilizzoni">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalDelActividad" data-rel="Guilizzoni">
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mariah</td>
-                        <td>Maclachlan</td>
-                        <td>34</td>
-                        <td>Patata</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalEditActividad" data-rel="Maclachlan">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalDelActividad" data-rel="Maclachlan">
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                    </tr>
+                    -->
                 </tbody>
             </table>
         </div>
@@ -157,6 +98,9 @@
                             <label>Curso :</label>
                         </div>
                         <div class="col-xs-8 form-group">
+                            <input class="form-control" type="text" id="inputTareaCursoNombre" disabled/>
+                            <input type="hidden" id="inputTareaCursoCodigo"/>
+                            <!--
                             <select class="form-control" id="selectCurso">
                                 <option>Seleccione</option>
                                 <option value="1">Lógica</option>
@@ -164,15 +108,20 @@
                                 <option value="3">Algebra</option>
                                 <option value="4">Lenguaje</option>
                             </select>
+                                -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Actividad :</label>
                         </div>
                         <div class="col-xs-8 form-group">
+                            <input class="form-control" type="text" id="inputTareaActividadNombre" disabled />
+                            <input type="hidden" id="inputTareaActividadCodigo" />
+                            <!--
                             <select class="form-control" id="selectActividad">
                                 <option>Seleccione</option>
                                 <option value="1">Análisis</option>
                             </select>
+                            -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Titulo :</label>
@@ -245,6 +194,7 @@
     </div>
 </div>
 
+
 <div class="modal fade bs-example-modal-sm" id="myModalDelActividad" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -262,8 +212,9 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <input type="hidden" id="codActividadToDel"/>
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModalDelBadResult">Si</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnConfirmDelete">Si</button>
             </div>
         </div>
     </div>
@@ -309,6 +260,10 @@
                             <label>Curso :</label>
                         </div>
                         <div class="col-xs-8 form-group">
+                            <input type="text"   id="inputActivNombreCurso" class="form-control" disabled/>
+                            <input type="hidden" id="inputActivCodigoCurso" />
+                            <input type="hidden" id="inputActivCodigoActividad" />
+                            <!--
                             <select class="form-control" id="selectActivCurso">
                                 <option>Seleccione</option>
                                 <option value="1">Lógica</option>
@@ -316,6 +271,7 @@
                                 <option value="3">Algebra</option>
                                 <option value="4">Lenguaje</option>
                             </select>
+                            -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Tipo :</label>
@@ -327,7 +283,7 @@
                                 <option value="2">Virtual</option>
                             </select>
                         </div>
-                        <div class="col-xs-4 form-group">
+                        <div class="col-xs-4 form-group">                            
                             <label>Titulo :</label>
                         </div>
                         <div class="col-xs-8 form-group">

@@ -13,17 +13,20 @@ namespace TiceWEB.Controllers
             return View();
         }
 
-        public IActionResult Tarea()
+        public IActionResult Tarea(int codigoCurso, int codigoActividad)
         {
             ViewData["Message"] = "Your application description page.";
             ViewData["menu"] = "curso";
+            ViewData["codigoActividad"] = codigoActividad;
+            ViewData["codigoCurso"] = codigoCurso;
             return View();
         }
 
-        public IActionResult Actividad()
+        public IActionResult Actividad(int codigoCurso)
         {
             ViewData["Message"] = "Your contact page.";
             ViewData["menu"] = "curso";
+            ViewData["codigoCurso"] = codigoCurso;
             return View();
         }
         public IActionResult Documento()

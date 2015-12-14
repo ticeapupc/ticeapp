@@ -155,18 +155,9 @@ input[type="checkbox"].form-control {
     width: 30%;
 }
 
-.table-striped tbody tr.highlight td {
-    background-color: #d9d9d9;
-}
-
 .site-content {
     padding-top: 150px;
 }
 .nav-tabs{
     margin-bottom: 10px;
-}
-
-.table>tbody>tr>td{
-    padding-bottom:4px;
-    padding-top:4px;
 }
