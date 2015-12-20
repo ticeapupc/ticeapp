@@ -5,7 +5,8 @@
         <h2><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Capacitaciones</h2>
 
         <button type="button" class="btn btn-default" onclick="javascript:irCrearCapa()">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Capacitación
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span id="txtCrearCapa">Crear Capacitación</span>
         </button>
 
         <div class="row">
@@ -16,26 +17,26 @@
                         <div class="row">
                             <div class="col-xs-6 col-md-3 form-group">
                                 <label>Taller</label>
-                                <select class="form-control" id="sel1">
-                                    <option selected> Seleccione </option>
-                                    <option>Short Option</option>
-                                    <option>This Is A Longer Option</option>
+                                <select class="form-control" id="selectCapaTaller">
+                                    <option value="" selected> Seleccione </option>
+                                    <option value="2">Short Option</option>
+                                    <option value="3">This Is A Longer Option</option>
                                 </select>
                             </div>
                             <div class="col-xs-6 col-md-3 form-group">
                                 <label>Periodo</label>
-                                <select class="form-control" id="sel1">
-                                    <option selected> Seleccione </option>
-                                    <option>Short Option</option>
-                                    <option>This Is A Longer Option</option>
+                                <select class="form-control" id="selectCapaPeriodo">
+                                    <option value="" selected> Seleccione </option>
+                                    <option value="13">Short Option</option>
+                                    <option value="14">This Is A Longer Option</option>
                                 </select>
                             </div>
                             <div class="col-xs-12 col-md-3 form-group">
                                 <label>Nombre Capacitación</label>
-                                <input class="form-control" type="text" />
+                                <input class="form-control" type="text" id="inputCapaNombre"/>
                             </div>
                             <div class="col-xs-12 col-md-2 form-group">
-                                <button type="button" class="btn btn-default btn-form-line">Buscar</button>
+                                <button id="btnBuscarCapa" type="button" class="btn btn-default btn-form-line">Buscar</button>
                             </div>
                         </div>
 
@@ -43,8 +44,11 @@
                 </div>
             </div>
         </div>
+
+        <input type="hidden" value="" name="capaSelected" id="capaSelected" />
+
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table id="tblCapacitaciones" class="table table-striped">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -56,7 +60,8 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbodyResult">
+                    <!--
                     <tr>
                         <td>Giacomo</td>
                         <td>xx1</td>
@@ -70,34 +75,7 @@
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Guido Jack</td>
-                        <td>xx2</td>
-                        <td>3</td>
-                        <td></td>
-                        <td>06/11/2015</td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mariah</td>
-                        <td>xx3</td>
-                        <td>34</td>
-                        <td></td>
-                        <td>15/11/2015</td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
+                    -->
                 </tbody>
             </table>
         </div>
@@ -105,7 +83,7 @@
     </div>
 </div>
 
-<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+<div class="modal fade bs-example-modal-sm" id="myModalDelCapa" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -131,7 +109,7 @@
     </div>
 </div>
 
-<div class="modal fade bs-example-modal-sm" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+<div class="modal fade bs-example-modal-sm" id="myModalDelCapaResult" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -153,3 +131,8 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script src="~/js/notie.js"></script>
+    <script src="~/js/script_main.js"></script>
+}

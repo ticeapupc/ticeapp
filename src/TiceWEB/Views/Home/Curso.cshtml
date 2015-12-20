@@ -2,10 +2,10 @@
 <div class="site-content">
     <div class="container-fluid">
         <ul class="nav nav-tabs">
-            <li class="active"><a asp-controller="Home" asp-action="Curso">Cursos</a></li>
-            <li class="disabled"><a onclick="javascript:detActividades()">Actividades</a></li>
-            <li class="disabled"><a>Tareas</a></li>
-            <li class="disabled"><a>Documentos</a></li>
+            <li id="tbCursos" class="active"><a asp-controller="Home" asp-action="Curso">Cursos</a></li>
+            <li id="tbActividades" class="disabled"><a onclick="javascript:detActividades()">Actividades</a></li>
+            <li id="tbTareas" class="disabled"><a>Tareas</a></li>
+            <li id="tbDocumentos" class="disabled"><a>Documentos</a></li>
         </ul>
         <h2>Listado de cursos</h2>
         <div class="panel panel-default">
@@ -15,6 +15,7 @@
                         <label>Periodo</label>
                     </div>
                     <div class="col-xs-3 form-group">
+                        <input type="hidden" id="qPeriodoLast"/>
                         <select class="form-control" id="qPeriodo">
                             <option>Seleccione</option>
                             <option value="2015-03">2015-03</option>
@@ -26,6 +27,7 @@
                         <label>Estado</label>
                     </div>
                     <div class="col-xs-3 form-group">
+                        <input type="hidden" id="qEstadoLast" />
                         <select class="form-control" id="qEstado">
                             <option>Seleccione</option>
                             <option value="A">Activo</option>
@@ -272,7 +274,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnGuardarCurso">Guardar</button>
+                <button type="button" class="btn btn-primary" id="btnEditarCurso">Guardar</button>
             </div>
         </div>
     </div>

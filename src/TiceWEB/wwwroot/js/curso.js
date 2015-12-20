@@ -56,17 +56,14 @@ function bindNuevaActividad() {
     })
 }
 
-
-function cursosxAsignacion(event) {
-    jQuery.support.cors = true;
-    event.preventDefault();
-    var qPeriodo = $('#qPeriodo').val();
-    var qEstado = $('#qEstado').val();
+function buscarCursosxAsignacion(qPeriodo, qEstado) {
     if (qPeriodo === '') {
         notie.alert(1, 'Debe seleccionar un Periodo', 2);
     } else if (qEstado === '') {
         notie.alert(1, 'Debe seleccionar un Estado', 2);
     } else {
+        $('#qPeriodoLast').val(qPeriodo);
+        $('#qEstadoLast').val(qEstado);
         var _url = 'http://localhost:49492/api/AsignacionCurso?periodo=' + qPeriodo + '&estado=' + qEstado;
         //ttp://localhost:49492/api/Actividad?periodo=2015-03&estado=A
         $.ajax({
@@ -82,6 +79,25 @@ function cursosxAsignacion(event) {
             }
         });
     }
+}
+
+function cursosxAsignacion(event) {
+    jQuery.support.cors = true;
+    event.preventDefault();
+    var qPeriodo = $('#qPeriodo').val();
+    var qEstado = $('#qEstado').val();
+    buscarCursosxAsignacion(qPeriodo, qEstado);
+}
+
+function actualizarCursosxAsignacion(event) {
+    jQuery.support.cors = true;
+    event.preventDefault();
+    var qPeriodo = $('#qPeriodoLast').val();
+    var qEstado = $('#qEstadoLast').val();
+    if (isEmpty(qPeriodo))
+        cursosxAsignacion(event);
+    else
+        buscarCursosxAsignacion(qPeriodo, qEstado);
 }
 
 function WriteResponse(cursos) {
@@ -102,10 +118,12 @@ function bindTableResult() {
     $('#tblCursos tbody tr').on('click', function (event) {
         if ($(this).hasClass('success')) {
             $('input#cursoSelected').val('');
+            $('#tbActividades').addClass('disabled');
             $(this).removeClass('success');
             $('.btn-actividad').addClass('disabled');
         } else {
             $('input#cursoSelected').val($(this).attr('rel'));
+            $('#tbActividades').removeClass('disabled');
             $(this).addClass('success').siblings().removeClass('success');
             $('.btn-actividad').removeClass('disabled');
         }
@@ -163,6 +181,51 @@ function guardarActividad(event) {
     }
 }
 
+function editarCurso(event) {
+    jQuery.support.cors = true;
+    event.preventDefault();
+    var errorCount = 0;
+    $('#guardarCurso input').each(function (index, val) {
+        if ($(this).val() === '') { errorCount++; }
+    });
+    if (errorCount === 0) {
+
+        var editCurso = {
+            'codigoCurso': $('#guardarCurso input#inputCursoCodigo').val(),
+            'nombreCurso': $('#guardarCurso input#inputCursoNombre').val(),
+            'estado': $('#guardarCurso select#selectCursoEstado').val(),
+            'observaciones': $('#guardarCurso textarea#textareaObs').val(),
+            'usuarioModificacion': 'admin'
+        }
+
+        $.ajax({
+            type: 'POST',
+            data: editCurso,
+            url: 'http://localhost:49492/api/AsignacionCurso',
+            dataType: 'JSON'
+        }).done(function (response) {
+            // Check for successful (blank) response
+            if (response == '2') {
+                // Clear the form inputs
+                $('#guardarCurso input').val('');
+                $('#guardarCurso select').val('');
+                $('#guardarCurso textarea').val('');
+                // Update the table
+                $('#myModalCurso').modal('toggle');
+                actualizarCursosxAsignacion(event);
+            }
+            else {
+                alert('Error al actualizar curso');
+            }
+        });
+
+    } else {
+        // If errorCount is more than 0, error out
+        alert('Por favor, ingresar todos los campos');
+        return false;
+    }
+}
+
 function detActividades() {
     var codigoCurso = $('input#cursoSelected').val();
     if (!isEmpty(codigoCurso)) {
@@ -179,6 +242,7 @@ function isEmpty(str) {
 $(document).ready(function () {
     // Add Team button click
     $('#btnGuardarActividad').on('click', guardarActividad);
+    $('#btnEditarCurso').on('click', editarCurso);
     $('#btnBuscarCurso').on('click', cursosxAsignacion);
     bindEditarCurso();
     bindNuevaActividad();

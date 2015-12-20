@@ -37,7 +37,7 @@ function bindNuevaTarea() {
                 }
             });
         } else {
-            notie.alert(1, 'Debe seleccionar un curso', 2);
+            notie.alert(1, 'Debe seleccionar una actividad', 2);
         }
     })
 }
@@ -117,10 +117,12 @@ function bindTableResult() {
     $('#tblActividades tbody tr').on('click', function (event) {
         if ($(this).hasClass('success')) {
             $('input#actividadSelected').val('');
+            $('#tbTareas').addClass('disabled');
             $(this).removeClass('success');
             $('.btn-tarea').addClass('disabled');
         } else {
             $('input#actividadSelected').val($(this).attr('rel'));
+            $('#tbTareas').removeClass('disabled');
             $(this).addClass('success').siblings().removeClass('success');
             $('.btn-tarea').removeClass('disabled');
         }
@@ -179,8 +181,8 @@ function guardarTarea(event) {
     });
     if (errorCount === 0) {        
         var nuevaTarea = {
-            'codigoCurso': $('#guardarTarea select#selectCurso').val(),
-            'codigoActividad': $('#guardarTarea select#selectActividad').val(),
+            'codigoCurso': $('#guardarTarea input#inputTareaCursoCodigo').val(),
+            'codigoActividad': $('#guardarTarea input#inputTareaActividadCodigo').val(),
             'titulo': $('#guardarTarea input#inputTitulo').val(),
             'codigoPrioridad': $('#guardarTarea select#selectPrioridad').val(),
             'estado': $('#guardarTarea select#selectEstado').val(),
@@ -198,12 +200,13 @@ function guardarTarea(event) {
             dataType: 'JSON'
         }).done(function (response) {
             // Check for successful (blank) response
-            if (response === '-1') {
+            if (response == '-1') {
                 // Clear the form inputs
                 $('#guardarTarea input').val('');
                 $('#guardarTarea select').val('');
                 $('#guardarTarea textarea').val('');
-                // Update the table                
+                              
+                $('#myModal').modal('toggle');
             }
             else {
                 alert('Error: ' + response.msg);
@@ -256,11 +259,62 @@ function detTareas() {
     }
 }
 
+function editarActividad(event) {
+    jQuery.support.cors = true;
+    event.preventDefault();
+    var errorCount = 0;
+    $('#guardarActividad input').each(function (index, val) {
+        if ($(this).val() === '') { errorCount++; }
+    });
+    if (errorCount === 0) {
+
+        var editActividad = {
+            'codigoCurso': $('#guardarActividad input#inputActivCodigoCurso').val(),
+            'codigoActividad': $('#guardarActividad input#inputActivCodigoActividad').val(),
+            'codigoTipoCurso': $('#guardarActividad select#selectActivTipo').val(),
+            'titulo': $('#guardarActividad input#inputActivTitulo').val(),
+            'fechaInicio': $('#guardarActividad input#inputActivFecIni').val(),
+            'fechaFin': $('#guardarActividad input#inputActivFecFin').val(),
+            'codigoSesion': $('#guardarActividad select#selectActivSesion').val(),
+            'codigoEstado': $('#guardarActividad select#selectActivEstado').val(),
+            'descripcion': $('#guardarActividad textarea#textareaActivDesc').val(),
+            'usuarioCreacion': 'admin',
+            'codigoModalidad': '1',
+            'codigoPeriodo': '1'
+        }
+
+        $.ajax({
+            type: 'POST',
+            data: editActividad,
+            url: 'http://localhost:49492/api/Actividad',
+            dataType: 'JSON'
+        }).done(function (response) {
+            // Check for successful (blank) response
+            if (response == '-1') {
+                // Clear the form inputs
+                $('#guardarActividad input').val('');
+                $('#guardarActividad select').val('');
+                $('#guardarActividad textarea').val('');
+                $('#myModalEditActividad').modal('toggle');
+                cargarCursoActividades();
+            }
+            else {
+                alert('Error al actualizar actividad');
+            }
+        });
+    } else {
+        // If errorCount is more than 0, error out
+        alert('Por favor, ingresar todos los campos');
+        return false;
+    }
+}
+
 $(document).ready(function () {
     $("#inputActivFecIni").datepicker({ dateFormat: "dd/mm/yy" });
     $("#inputActivFecFin").datepicker({ dateFormat: "dd/mm/yy" });
     // Add Team button click
     $('#btnGuardarTarea').on('click', guardarTarea);
+    $('#btnEditarActividad').on('click', editarActividad);
     $('#btnConfirmDelete').on('click', deleteActividad);
     bindDeleteActividad();
     bindEditarActividad();

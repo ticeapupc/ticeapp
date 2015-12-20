@@ -2,10 +2,10 @@
 <div class="site-content">
     <div class="container-fluid">
         <ul class="nav nav-tabs">
-            <li><a asp-controller="Home" asp-action="Curso">Cursos</a></li>
-            <li class="active"><a>Actividades</a></li>
-            <li><a onclick="javascript:detTareas()">Tareas</a></li>
-            <li class="disabled"><a asp-controller="Home" asp-action="Documento">Documentos</a></li>
+            <li id="tbCursos"><a asp-controller="Home" asp-action="Curso">Cursos</a></li>
+            <li id="tbActividades" class="active"><a>Actividades</a></li>
+            <li id="tbTareas" class="disabled"><a onclick="javascript:detTareas()">Tareas</a></li>
+            <li id="tbDocumentos" class="disabled"><a asp-controller="Home" asp-action="Documento">Documentos</a></li>
         </ul>
         <!-- inicio cuerpo-->
 
@@ -334,7 +334,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnGuardarActividad">Guardar</button>
+                <button type="button" class="btn btn-primary" id="btnEditarActividad">Guardar</button>
             </div>
         </div>
     </div>

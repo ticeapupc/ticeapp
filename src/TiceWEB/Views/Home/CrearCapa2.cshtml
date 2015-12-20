@@ -3,18 +3,20 @@
     <div class="container-fluid">
 
         <!-- Inicio cuerpo -->
-        <button type="button" class="btn btn-default">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-default" id="btnCancelar">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnGuardarCapacitacion">Guardar</button>
         <br /><br />
         <ul class="nav nav-tabs">
-            <li><a asp-controller="Home" asp-action="CrearCapa">Ajustes Generales</a></li>
-            <li class="active"><a asp-controller="Home" asp-action="CrearCapa2">Taller & Materiales</a></li>
-            <li><a asp-controller="Home" asp-action="CrearCapa3">Participantes</a></li>
+            <li><a onclick="javascript:crearCapa()">Ajustes Generales</a></li>
+            <li class="active"><a onclick="javascript:crearTallerMaterial()">Taller & Materiales</a></li>
+            <li><a onclick="javascript:crearParticipante()">Participantes</a></li>
         </ul>
 
         <div class="panel panel-default">
             <div class="panel-heading"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Lista Materiales</div>
             <div class="panel-body">
+
+                <input type="hidden" value="@ViewData["codigoCapa"]" name="codigoCapa" id="codigoCapa" />
 
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir Taller
@@ -25,14 +27,16 @@
                         <label>Nombre Capacitación</label>
                     </div>
                     <div class="col-xs-12 col-md-6 form-group">
-                        <span>Inducción</span>
+                        <span id="spNombreCapacitacion"></span>
                     </div>
                 </div>
+
+                <input type="hidden" name="materialSelected" id="materialSelected"/>
 
                 <div class="row">
                     <div class="col-xs-12 col-md-8">
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table id="tblMateriales" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Nombre Documento</th>
@@ -40,7 +44,8 @@
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tBodyResult">
+                                    <!--
                                     <tr>
                                         <td>Giacomo</td>
                                         <td>Guilizzoni</td>
@@ -77,6 +82,7 @@
                                             </button>
                                         </td>
                                     </tr>
+                                    -->
                                 </tbody>
                             </table>
                         </div>
@@ -94,24 +100,27 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">
                             Listado de talleres
-                            <img src="Bb_learn_small.png" style="width:100px;float:right" />
+                            <img src="~/images/Bb_learn_small.png" style="width:100px;float:right" />
                         </h4>
                     </div>
                     <div class="modal-body">
 
                         <span>* Seleccione una fila para cargar los materiales del taller</span>
 
+                        <input type="hidden" id="tallerSelected" name="tallerSelected"/>
+
                         <div class="row">
                             <div class="col-xs-12 col-md-8">
                                 <div class="table-responsive">
-                                    <table class="table table-striped">
+                                    <table id="tblTalleres" class="table table-striped">
                                         <thead>
                                             <tr>
                                                 <th>Código</th>
                                                 <th>Nombre Taller</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="modalTBodyResult">
+                                            <!--
                                             <tr>
                                                 <td>T001</td>
                                                 <td>Guilizzoni</td>
@@ -124,6 +133,7 @@
                                                 <td>T003</td>
                                                 <td>Maclachlan</td>
                                             </tr>
+                                            -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -134,3 +144,8 @@
             </div>
         </div>
         <!-- Fin Modal -->
+
+@section scripts{
+    <script src="~/js/notie.js"></script>
+    <script src="~/js/crearcapa2.js"></script>
+}

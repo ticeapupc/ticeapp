@@ -2,6 +2,7 @@
 /// <reference path="../gulpfile.js" />
 /// <reference path="js/actividad.js" />
 /// <reference path="js/crearcapa.js" />
+/// <reference path="js/crearcapa3.js" />
 /// <reference path="js/curso.js" />
 /// <reference path="js/documento.js" />
 /// <reference path="js/login.js" />

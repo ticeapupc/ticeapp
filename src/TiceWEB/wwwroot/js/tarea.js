@@ -1,4 +1,8 @@
-﻿function cargarActividadTareas() {
+﻿function isEmpty(str) {
+    return (!str || 0 === str.length);
+}
+
+function cargarActividadTareas() {
     jQuery.support.cors = true;
     var codigoActividad = $('input#codigoActividad').val();
     $.ajax({
@@ -46,14 +50,50 @@ function bindTableResult() {
     $('#tblTareas tbody tr').on('click', function (event) {
         if ($(this).hasClass('success')) {
             $('input#tareaSelected').val('');
+            $('#tbDocumentos').addClass('disabled');
             $(this).removeClass('success');
             $('.btn-documento').addClass('disabled');
         } else {
             $('input#tareaSelected').val($(this).attr('rel'));
+            $('#tbDocumentos').removeClass('disabled');
             $(this).addClass('success').siblings().removeClass('success');
             $('.btn-documento').removeClass('disabled');
         }
     });
+}
+
+function bindNuevoDocumento() {
+    $('#myModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var modal = $(this)
+        jQuery.support.cors = true;
+        var codigoTarea = $('input#tareaSelected').val();
+        var codigoCurso = $('input#codigoCurso').val();
+        var codigoActividad = $('input#codigoActividad').val();
+        if (!isEmpty(codigoTarea)) {
+            var _url = 'http://localhost:49492/api/Tarea?codigoCurso=' + codigoCurso + '&codigoActividad=' + codigoActividad + '&codigoTarea=' + codigoTarea;
+            $.ajax({
+                url: _url,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (index, tarea) {
+                        $('input#inputDocCursoCodigo').val(tarea.codigoCurso);
+                        $('input#inputDocCursoNombre').val(tarea.Curso);
+                        $('input#inputDocActividadCodigo').val(tarea.codigoActividad);
+                        $('input#inputDocActividadNombre').val(tarea.Actividad);
+                        $('input#inputDocTareaCodigo').val(tarea.codigoTarea);
+                        $('input#inputDocTareaNombre').val(tarea.titulo);
+                    });
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        } else {
+            notie.alert(1, 'Debe seleccionar una tarea', 2);
+        }
+    })
 }
 
 function bindDeleteTarea() {
@@ -61,7 +101,7 @@ function bindDeleteTarea() {
         var button = $(event.relatedTarget);
         var recipient = button.data('rel');
         var modal = $(this);
-        $('label#lblResult').text('La tarea ' + recipient + ' tiene documentos pendientes por cerrar');
+        $('#codTareaToDel').val(recipient);
     });
 }
 
@@ -70,16 +110,38 @@ function bindEditarTarea() {
         var button = $(event.relatedTarget);
         var recipient = button.data('rel');
         var modal = $(this);
-        $('#selectTareaCurso').val('1');
-        $('#selectTareaActividad').val('1');
-        $('#inputTareaTitulo').val('1');
-        $('#selectTareaPrioridad').val('1');
-        $('#selectTareaEstado').val('1');
-        $('#inputTareaCompletado').val('1');
-        $('#inputTareaAsignado').val('1');
-        $('#textareaTareaDesc').val('1');
-        $('#inputTareaFecIni').val('1');
-        $('#inputTareaFecFin').val('1');
+        jQuery.support.cors = true;
+        var codigoCurso = $('input#codigoCurso').val();
+        var codigoActividad = $('input#codigoActividad').val();
+        if (!isEmpty(codigoActividad)) {
+            var _url = 'http://localhost:49492/api/Tarea?codigoCurso=' + codigoCurso + '&codigoActividad=' + codigoActividad + '&codigoTarea=' + recipient;
+            $.ajax({
+                url: _url,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (index, tarea) {
+                        $('#inputTareaNombreCurso').val(tarea.Curso);
+                        $('#inputTareaCodigoCurso').val(tarea.codigoCurso);
+                        $('#inputTareaNombreActividad').val(tarea.Actividad);
+                        $('#inputTareaCodigoActividad').val(tarea.codigoActividad);
+                        $('#inputTareaCodigoTarea').val(tarea.codigoTarea);
+                        //
+                        $('#inputTareaTitulo').val(tarea.titulo);
+                        $('#selectTareaPrioridad').val('1');
+                        $('#selectTareaEstado').val('1');
+                        $('#inputTareaCompletado').val(tarea.porcentajeCompletado);
+                        $('#inputTareaAsignado').val(tarea.codigoRecurso);
+                        $('#textareaTareaDesc').val(tarea.descripcion);
+                        $('#inputTareaFecIni').val(tarea.fechaInicio);
+                        $('#inputTareaFecFin').val(tarea.fechaFin);
+                    });
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
     });
 }
 
@@ -91,11 +153,10 @@ function guardarDocumento(event) {
         if ($(this).val() === '') { errorCount++; }
     });
     if (errorCount === 0) {
-        
         var nuevaTarea = {
-            'codigoCurso': $('#guardarDocumento select#selectCurso').val(),
-            'codigoActividad': $('#guardarDocumento select#selectActividad').val(),
-            'codigoTarea': $('#guardarDocumento select#selectTarea').val(),
+            'codigoCurso': $('#guardarDocumento input#inputDocCursoCodigo').val(),
+            'codigoActividad': $('#guardarDocumento input#inputDocActividadCodigo').val(),
+            'codigoTarea': $('#guardarDocumento input#inputDocTareaCodigo').val(),
             'titulo': $('#guardarDocumento input#inputTitulo').val(),
             'autor': $('#guardarDocumento input#inputAutor').val(),
             'codigoTipoDocumento': $('#guardarDocumento select#selectTipo').val(),
@@ -112,12 +173,13 @@ function guardarDocumento(event) {
             dataType: 'JSON'
         }).done(function (response) {
             // Check for successful (blank) response
-            if (response.msg === '') {
+            if (response == '-1') {
                 // Clear the form inputs
                 $('#guardarDocumento input').val('');
                 $('#guardarDocumento select').val('');
+                $('#guardarDocumento textarea').val('');
                 // Update the table
-                alert('actualizar vista');
+                $('#myModal').modal('toggle');
             }
             else {
                 alert('Error: ' + response.msg);
@@ -131,14 +193,99 @@ function guardarDocumento(event) {
     }
 }
 
+function deleteTarea(event) {
+    jQuery.support.cors = true;
+    event.preventDefault();
+    var errorCount = 0;
+    var codigoCurso = $('input#codigoCurso').val();
+    var codigoActividad = $('input#codigoActividad').val();
+    var codigoTarea = $('#codTareaToDel').val();
+    if (!isEmpty(codigoActividad)) {
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:49492/api/Tarea?codigoCurso=' + codigoCurso + '&codigoActividad=' + codigoActividad + '&codigoTarea=' + codigoTarea,
+            dataType: 'JSON'
+        }).done(function (response) {
+            if (response == '-1') {
+                cargarActividadTareas();
+            }
+            else {
+                alert('Error al eliminar tarea');
+            }
+        });
+    } else {
+        alert('Por favor, ingresar todos los campos');
+        return false;
+    }
+}
+
+function detDocumentos() {
+    var codigoTarea = $('input#tareaSelected').val();
+    var codigoCurso = $('input#codigoCurso').val();
+    var codigoActividad = $('input#codigoActividad').val();
+    if (!isEmpty(codigoTarea)) {
+        window.location.href = "/Home/Documento/?codigoCurso=" + codigoCurso + "&codigoActividad=" + codigoActividad + "&codigoTarea=" + codigoTarea;
+    } else {
+        notie.alert(1, 'Debe seleccionar una tarea', 2);
+    }
+}
+
+function editarTarea(event) {
+    jQuery.support.cors = true;
+    event.preventDefault();
+    var errorCount = 0;
+    $('#guardarTarea input').each(function (index, val) {
+        if ($(this).val() === '') { errorCount++; }
+    });
+    if (errorCount === 0) {        
+        var editTarea = {
+            'codigoCurso': $('#guardarTarea input#inputTareaCodigoCurso').val(),
+            'codigoActividad': $('#guardarTarea input#inputTareaCodigoActividad').val(),
+            'codigoTarea': $('#guardarTarea input#inputTareaCodigoTarea').val(),
+            'titulo': $('#guardarTarea input#inputTareaTitulo').val(),
+            'codigoPrioridad': $('#guardarTarea select#selectTareaPrioridad').val(),
+            'estado': $('#guardarTarea select#selectTareaEstado').val(),
+            'porcentajeCompletado': $('#guardarTarea input#inputTareaCompletado').val(),
+            'codigoRecurso': $('#guardarTarea input#inputTareaAsignado').val(),
+            'descripcion': $('#guardarTarea textarea#textareaTareaDesc').val(),
+            'fechaInicio': $('#guardarTarea input#inputTareaFecIni').val(),
+            'fechaFin': $('#guardarTarea input#inputTareaFecFin').val(),
+            'usuarioCreacion': 'admin'
+        }
+        $.ajax({
+            type: 'POST',
+            data: editTarea,
+            url: 'http://localhost:49492/api/Tarea',
+            dataType: 'JSON'
+        }).done(function (response) {
+            // Check for successful (blank) response
+            if (response == '-1') {
+                // Clear the form inputs
+                $('#guardarTarea input').val('');
+                $('#guardarTarea select').val('');
+                $('#guardarTarea textarea').val('');
+                $('#myModalEditTarea').modal('toggle');
+            }
+            else {
+                alert('Error al actualizar tarea');
+            }
+        });
+    } else {
+        alert('Por favor, ingresar todos los campos');
+        return false;
+    }
+}
+
 $(document).ready(function () {
-    $("#inputTareaFecIni").datepicker({ dateFormat: "yy-mm-dd" });
-    $("#inputTareaFecFin").datepicker({ dateFormat: "yy-mm-dd" });
+    $("#inputTareaFecIni").datepicker({ dateFormat: "dd/mm/yy" });
+    $("#inputTareaFecFin").datepicker({ dateFormat: "dd/mm/yy" });
     // Add Team button click
     $('#btnGuardarDocumento').on('click', guardarDocumento);
-
+    $('#btnEditarTarea').on('click', editarTarea);    
+    $('#btnConfirmDelete').on('click', deleteTarea);
     bindDeleteTarea();
     bindEditarTarea();
+    bindNuevoDocumento();
     cargarActividadTareas();
 
 });

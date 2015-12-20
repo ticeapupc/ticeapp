@@ -3,10 +3,10 @@
     <div class="container-fluid">
 
         <ul class="nav nav-tabs">
-            <li><a asp-controller="Home" asp-action="Curso">Cursos</a></li>
-            <li><a asp-controller="Home" asp-action="Actividad">Actividades</a></li>
-            <li class="active"><a asp-controller="Home" asp-action="Tarea">Tareas</a></li>
-            <li><a asp-controller="Home" asp-action="Documento">Documentos</a></li>
+            <li id="tbCursos"><a asp-controller="Home" asp-action="Curso">Cursos</a></li>
+            <li id="tbActividades"><a asp-controller="Home" asp-action="Actividad">Actividades</a></li>
+            <li id="tbTareas" class="active"><a asp-controller="Home" asp-action="Tarea">Tareas</a></li>
+            <li id="tbDocumentos" class="disabled"><a onclick="javascript:detDocumentos()">Documentos</a></li>
         </ul>
 
         <!-- inicio cuerpo-->
@@ -37,7 +37,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbodyResult">
                     <!--
                     <tr>
                         <td>Giacomo</td>
@@ -88,6 +88,9 @@
                             <label>Curso :</label>
                         </div>
                         <div class="col-xs-8 form-group">
+                            <input class="form-control" type="text" id="inputDocCursoNombre" disabled />
+                            <input type="hidden" id="inputDocCursoCodigo" />
+                            <!--
                             <select class="form-control" id="selectCurso">
                                 <option>Seleccione</option>
                                 <option value="1">Lógica</option>
@@ -95,24 +98,33 @@
                                 <option value="3">Algebra</option>
                                 <option value="4">Lenguaje</option>
                             </select>
+                            -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Actividad :</label>
                         </div>
                         <div class="col-xs-8 form-group">
+                            <input class="form-control" type="text" id="inputDocActividadNombre" disabled />
+                            <input type="hidden" id="inputDocActividadCodigo" />
+                            <!--
                             <select class="form-control" id="selectActividad">
                                 <option>Seleccione</option>
                                 <option value="1">Análisis</option>
                             </select>
+                            -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Tarea :</label>
                         </div>
                         <div class="col-xs-8 form-group">
+                            <input class="form-control" type="text" id="inputDocTareaNombre" disabled />
+                            <input type="hidden" id="inputDocTareaCodigo" />
+                            <!--
                             <select class="form-control" id="selectTarea">
                                 <option>Seleccione</option>
                                 <option value="1">Actualizar Focus</option>
                             </select>
+                            -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Titulo :</label>
@@ -171,6 +183,9 @@
                             <label>Curso :</label>
                         </div>
                         <div class="col-xs-8 form-group">
+                            <input type="text" id="inputTareaNombreCurso" class="form-control" disabled />
+                            <input type="hidden" id="inputTareaCodigoCurso" />
+                            <!--
                             <select class="form-control" id="selectTareaCurso">
                                 <option>Seleccione</option>
                                 <option value="1">Lógica</option>
@@ -178,15 +193,21 @@
                                 <option value="3">Algebra</option>
                                 <option value="4">Lenguaje</option>
                             </select>
+                            -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Actividad :</label>
                         </div>
-                        <div class="col-xs-8 form-group">
+                        <div class="col-xs-8 form-group">                            
+                            <input type="text" id="inputTareaNombreActividad" class="form-control" disabled />
+                            <input type="hidden" id="inputTareaCodigoActividad" />
+                            <input type="hidden" id="inputTareaCodigoTarea" />
+                            <!--
                             <select class="form-control" id="selectTareaActividad">
                                 <option>Seleccione</option>
                                 <option value="1">Análisis</option>
                             </select>
+                            -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Titulo :</label>
@@ -253,7 +274,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnGuardarTarea">Guardar</button>
+                <button type="button" class="btn btn-primary" id="btnEditarTarea">Guardar</button>
             </div>
         </div>
     </div>
@@ -276,8 +297,9 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <input type="hidden" id="codTareaToDel" />
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModalDelBadResult">Si</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnConfirmDelete">Si</button>
             </div>
         </div>
     </div>

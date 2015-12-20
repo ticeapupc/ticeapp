@@ -10,6 +10,11 @@
         <!-- inicio cuerpo-->
         <h2>Listado de documentos</h2>
 
+        <input type="hidden" value="@ViewData["codigoCurso"]" name="codigoCurso" id="codigoCurso" />
+        <input type="hidden" value="@ViewData["codigoActividad"]" name="codigoActividad" id="codigoActividad" />
+        <input type="hidden" value="@ViewData["codigoTarea"]" name="codigoTarea" id="codigoTarea" />
+        <input type="hidden" value="" name="documentoSelected" id="documentoSelected" />
+        
         <div class="table-responsive">
             <table id="tblDocumentos" class="table table-striped">
                 <thead>
@@ -23,7 +28,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbodyResult">
                     <tr>
                         <td>Giacomo</td>
                         <td>Guilizzoni</td>
@@ -98,6 +103,9 @@
                             <label>Curso :</label>
                         </div>
                         <div class="col-xs-8 form-group">
+                            <input type="text" id="inputDocNombreCurso" class="form-control" disabled />
+                            <input type="hidden" id="inputDocCodigoCurso" />
+                            <!--
                             <select class="form-control" id="selectDocCurso">
                                 <option>Seleccione</option>
                                 <option value="1">Lógica</option>
@@ -105,24 +113,34 @@
                                 <option value="3">Algebra</option>
                                 <option value="4">Lenguaje</option>
                             </select>
+                            -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Actividad :</label>
                         </div>
                         <div class="col-xs-8 form-group">
+                            <input type="text" id="inputDocNombreActividad" class="form-control" disabled />
+                            <input type="hidden" id="inputDocCodigoActividad" />
+                            <!--
                             <select class="form-control" id="selectDocActividad">
                                 <option>Seleccione</option>
                                 <option value="1">Análisis</option>
                             </select>
+                            -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Tarea :</label>
                         </div>
                         <div class="col-xs-8 form-group">
+                            <input type="text" id="inputDocNombreTarea" class="form-control" disabled />
+                            <input type="hidden" id="inputDocCodigoTarea" />
+                            <input type="hidden" id="inputDocCodigoDocumento" />
+                            <!--
                             <select class="form-control" id="selectDocTarea">
                                 <option>Seleccione</option>
                                 <option value="1">Actualizar Focus</option>
                             </select>
+                            -->
                         </div>
                         <div class="col-xs-4 form-group">
                             <label>Titulo :</label>
@@ -157,7 +175,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnGuardarDocumento">Guardar</button>
+                <button type="button" class="btn btn-primary" id="btnEditarDocumento">Guardar</button>
             </div>
         </div>
     </div>
@@ -180,6 +198,7 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <input type="hidden" id="codDocumentoToDel" />
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Si</button>
             </div>

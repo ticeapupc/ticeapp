@@ -88,6 +88,3 @@ function irActTalleres(){
 function irGenerarDisenio(){
   window.location.href = "index.html";
 }
-function irCrearCapa(){
-  window.location.href = "/Home/CrearCapa";
-}

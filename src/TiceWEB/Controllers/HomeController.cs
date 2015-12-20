@@ -29,10 +29,13 @@ namespace TiceWEB.Controllers
             ViewData["codigoCurso"] = codigoCurso;
             return View();
         }
-        public IActionResult Documento()
+        public IActionResult Documento(int codigoCurso, int codigoActividad, int codigoTarea)
         {
             ViewData["menu"] = "curso";
             ViewData["Message"] = "Your contact page.";
+            ViewData["codigoActividad"] = codigoActividad;
+            ViewData["codigoCurso"] = codigoCurso;
+            ViewData["codigoTarea"] = codigoTarea;
             return View();
         }
 
@@ -53,15 +56,24 @@ namespace TiceWEB.Controllers
             return View();
         }
 
-        public IActionResult CrearCapa2()
+        public IActionResult EditarCapa(int codigoCapa)
         {
             ViewData["menu"] = "main";
+            ViewData["codigoCapa"] = codigoCapa;
+            return View("CrearCapa");
+        }
+
+        public IActionResult CrearCapa2(int codigoCapa)
+        {
+            ViewData["menu"] = "main";
+            ViewData["codigoCapa"] = codigoCapa;
             return View();
         }
 
-        public IActionResult CrearCapa3()
+        public IActionResult CrearCapa3(int codigoCapa)
         {
             ViewData["menu"] = "main";
+            ViewData["codigoCapa"] = codigoCapa;
             return View();
         }
         public IActionResult Error()
